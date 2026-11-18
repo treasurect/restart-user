@@ -1,5 +1,6 @@
 package com.treasure.restart.user.service;
 
+import com.treasure.common.UserContext;
 import com.treasure.common.exception.BusinessException;
 import com.treasure.common.exception.ErrorCode;
 import com.treasure.restart.user.dto.UserInfoResponse;
@@ -8,7 +9,6 @@ import com.treasure.restart.user.dto.UserLoginResponse;
 import com.treasure.restart.user.dto.UserUpdateRequest;
 import com.treasure.restart.user.entity.User;
 import com.treasure.restart.user.helper.JwtUtils;
-import com.treasure.restart.user.helper.UserContext;
 import com.treasure.restart.user.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

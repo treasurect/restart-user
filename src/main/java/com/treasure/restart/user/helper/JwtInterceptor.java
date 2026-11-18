@@ -1,5 +1,6 @@
 package com.treasure.restart.user.helper;
 
+import com.treasure.common.UserContext;
 import com.treasure.common.response.BaseResponse;
 import com.treasure.restart.user.entity.User;
 import com.treasure.restart.user.mapper.UserMapper;
