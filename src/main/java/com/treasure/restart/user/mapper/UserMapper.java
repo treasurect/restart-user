@@ -3,6 +3,8 @@ package com.treasure.restart.user.mapper;
 import com.treasure.restart.user.entity.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
 
@@ -14,6 +16,18 @@ public interface UserMapper {
             "created_at, updated_at, cover_url AS coverUrl " +
             "FROM sys_user WHERE id = #{userId} LIMIT 1")
     User findByUserId(@Param("userId") Long userId);
+
+    @Select("""
+            <script>
+            SELECT id, username, nickname, avatar, status, cover_url AS coverUrl
+            FROM sys_user
+            WHERE id IN
+            <foreach collection="ids" item="id" open="(" separator="," close=")">
+                #{id}
+            </foreach>
+            </script>
+            """)
+    List<User> selectByIds(@Param("ids") List<Long> ids);
 
     @Insert("INSERT INTO `sys_user` (username, password, nickname, avatar, status, created_at, updated_at) " +
             "VALUES (#{username}, #{password}, #{nickname}, #{avatar}, #{status}, NOW(), NOW())")

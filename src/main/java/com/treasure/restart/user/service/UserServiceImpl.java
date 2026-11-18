@@ -7,12 +7,15 @@ import com.treasure.restart.user.dto.UserInfoResponse;
 import com.treasure.restart.user.dto.UserLoginRequest;
 import com.treasure.restart.user.dto.UserLoginResponse;
 import com.treasure.restart.user.dto.UserUpdateRequest;
+import com.treasure.restart.user.dto.UserSimpleVO;
 import com.treasure.restart.user.entity.User;
 import com.treasure.restart.user.helper.JwtUtils;
 import com.treasure.restart.user.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -77,6 +80,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserSimpleVO getUserById(Long id) {
+        User user = userMapper.findByUserId(id);
+        if (user == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND);
+        }
+        return toSimpleUser(user);
+    }
+
+    @Override
+    public List<UserSimpleVO> getUsersByIds(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) {
+            return List.of();
+        }
+
+        return userMapper.selectByIds(ids)
+                .stream()
+                .map(this::toSimpleUser)
+                .toList();
+    }
+
+    @Override
     public Boolean updateUserInfo(UserUpdateRequest request) {
         Long userId = UserContext.getUserId();
         int rows = userMapper.updateUserInfo(userId, request.getNickname(), request.getAvatar());
@@ -112,5 +136,14 @@ public class UserServiceImpl implements UserService {
         response.setNickname(user.getNickname());
 
         return response;
+    }
+
+    private UserSimpleVO toSimpleUser(User user) {
+        return new UserSimpleVO(
+                user.getId(),
+                user.getUsername(),
+                user.getNickname(),
+                user.getAvatar()
+        );
     }
 }
