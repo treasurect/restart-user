@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.treasure</groupId>
     <artifactId>restart-user</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>restart-user</name>
     <description>restart-user</description>
     <url/>
@@ -36,11 +36,6 @@
         </repository>
     </repositories>
     <dependencies>
-        <dependency>
-            <groupId>com.treasure</groupId>
-            <artifactId>restart-common</artifactId>
-            <version>0.0.3</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -89,6 +84,16 @@
             <artifactId>mybatis-spring-boot-starter-test</artifactId>
             <version>4.0.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.treasure</groupId>
+            <artifactId>restart-common</artifactId>
+            <version>0.0.4</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.12.6</version>
         </dependency>
     </dependencies>
 

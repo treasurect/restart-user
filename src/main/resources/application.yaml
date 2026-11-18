@@ -8,9 +8,13 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/restart_user?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai
-    username: root
-    password: 你的数据库密码
+    username: restart_app
+    password: ${DB_PWD}
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+jwt:
+  private-key-path: ${JWT_PRIVATE_KEY_PATH}
+  public-key-path: ${JWT_PUBLIC_KEY_PATH}
