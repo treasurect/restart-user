@@ -12,7 +12,7 @@ import java.security.KeyPairGenerator;
 import java.util.Base64;
 
 @SpringBootTest
-class RestartUserApplicationTests {
+class RestartUserServiceApplicationTests {
 
     private static final KeyPair TEST_KEY_PAIR = generateTestKeyPair();
     private static final Path PRIVATE_KEY_PATH = writeTestKeyFile("private", "PRIVATE KEY", TEST_KEY_PAIR.getPrivate().getEncoded());
